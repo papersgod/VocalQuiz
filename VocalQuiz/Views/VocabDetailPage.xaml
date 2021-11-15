@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VocalQuiz.Views.VocabDetailPage"
+             Title="{Binding Title}"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" xmlns:local="clr-namespace:VocalQuiz.ViewModels"
+             ios:Page.UseSafeArea="true">
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Korean:" FontSize="Medium" FontAttributes="Bold" />
+        <Entry Text="{Binding InKorean, Mode=TwoWay}" FontSize="Medium"/>
+        <Label Text="Vietnamese:" FontSize="Medium" FontAttributes="Bold"/>
+        <Entry Text="{Binding InVietnamese, Mode=TwoWay}" FontSize="Medium" Margin="0" />
+        <Picker Title="Select a Topic"
+                TitleColor="Black"
+                ItemsSource="{Binding Topics}"
+                ItemDisplayBinding="{Binding Text}"
+                SelectedItem="{Binding Topic}"
+                 />
+        <Label Text="{Binding Topic.Text}"></Label>
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Update" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+</ContentPage>

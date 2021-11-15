@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VocalQuiz.Views.VocabsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:VocalQuiz.ViewModels"  
+             xmlns:model="clr-namespace:VocalQuiz.Models" xmlns:local1="clr-namespace:VocalQuiz.Services"
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddVocabCommand}" />
+    </ContentPage.ToolbarItems>
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+    <RefreshView x:DataType="local:VocabsViewModel" Command="{Binding LoadVocabsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Vocabs}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10" x:DataType="model:Vocabulary">
+                        <StackLayout Spacing="20" Padding="15">
+                            <Label Text="{Binding InKorean}" 
+                            LineBreakMode="WordWrap" 
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" VerticalOptions="Center" />
+                            <Label Text="{Binding InVietNamese}" 
+                            LineBreakMode="WordWrap" 
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="13" VerticalOptions="Center" />
+                        </StackLayout>
+                        <Button x:Name="deleteButton" Text="Delete" FontSize="Small" BackgroundColor="Red" TextColor="White"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:VocabsViewModel}}, Path=ItemTapped2}"		
+                                CommandParameter="{Binding .}"
+                                VerticalOptions="Center" HorizontalOptions="End" Margin="10"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:VocabsViewModel}}, Path=ItemTapped1}"		
+                                CommandParameter="{Binding .}">
+                            </TapGestureRecognizer>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

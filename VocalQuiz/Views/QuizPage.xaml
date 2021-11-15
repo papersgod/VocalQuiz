@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:VocalQuiz.ViewModels"
+             x:Class="VocalQuiz.Views.QuizPage">
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+           
+                <Label Text="Quizz" BackgroundColor="LightBlue" VerticalOptions="Fill" HorizontalOptions="Fill" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontSize="60"/>
+            
+            <Picker Grid.Row="1" 
+                Title="Select a Topic"
+                TitleColor="Black"
+                ItemsSource="{Binding Topics}"
+                ItemDisplayBinding="{Binding Text}"
+                HorizontalOptions="Center" VerticalOptions="Center"
+                SelectedItem="{Binding Topic}"
+                 />
+
+            <StackLayout x:Name="mainStack" Grid.Row="2" Orientation="Vertical" HorizontalOptions="Center" VerticalOptions="Start">
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Korean: " FontSize="Medium" FontAttributes="Bold"></Label>
+                    <Entry x:Name="lbl1" Text="{Binding InKorean}" FontSize="Medium"></Entry>
+                </StackLayout>
+                <StackLayout Orientation="Vertical">
+                    <Label Text="Vietnamese: " FontSize="Medium" FontAttributes="Bold"></Label>
+                    <Entry x:Name="lbl2" Text="{Binding InVietnamese}" FontSize="Medium"></Entry>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Row="3" VerticalOptions="End" Margin="0,0,0,50">
+                <Button x:Name="btnCheck" Text="Check" Margin="50,0,50,0" Clicked="Button_Clicked"></Button>
+                <Button x:Name="btnNext" Text="Next" Margin="50,10,50,0" Clicked="Next_Clicked"/>
+            </StackLayout>
+           
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

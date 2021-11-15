@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VocalQuiz.Views.TopicDetailPage"
+             Title="{Binding Title}">
+
+
+    <StackLayout Spacing="20" Padding="15">
+        <Label Text="Text:" FontSize="Medium" FontAttributes="Bold" />
+        <Entry Text="{Binding Text}" FontSize="Medium"/>
+        <Label Text="Description:" FontSize="Medium" FontAttributes="Bold"/>
+        <Editor Text="{Binding Description, Mode=TwoWay}" AutoSize="TextChanges" FontSize="Medium" Margin="0" />
+        
+        <StackLayout Orientation="Horizontal">
+            <Button Text="Cancel" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>
+            <Button Text="Update" Command="{Binding SaveCommand}" HorizontalOptions="FillAndExpand"></Button>
+        </StackLayout>
+    </StackLayout>
+    
+</ContentPage>
